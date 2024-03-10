@@ -1,0 +1,244 @@
+<!DOCTYPE HTML>
+<!--
+	Solid State by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Projects - Aditya Singh</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Page Wrapper -->
+			<div id="page-wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<h1><a href="index.html">Aditya Singh</a></h1>
+						<nav>
+							<a href="#menu">Menu</a>
+						</nav>
+					</header>
+
+				<!-- Menu -->
+					<nav id="menu">
+						<div class="inner">
+							<h2>Menu</h2>
+							<ul class="links">
+								<li><a href="index.html">Home</a></li>
+								<li><a href="projects.html">Projects</a></li>
+							</ul>
+							<a href="#" class="close">Close</a>
+						</div>
+					</nav>
+
+				<!-- Wrapper -->
+					<section id="wrapper">
+						<header>
+							<div class="inner">
+								<h2>Style Transfer</h2>
+                                <ul class="contact">
+                                    <li class="icon brands fa-github"><a href="https://github.com/Aditya-Singh-3112/Neural-Style-Transfer" target="_blank">Get the code on GitHub</a></li>
+                                    <li class="icon emojis fa-face-smile"><a href="https://huggingface.co/spaces/AdityaSingh312/Style_transfer" target="_blank">Try it on Huggingface</a></li>
+                                </ul>
+                                <a class="image"><img src="images/Style-transfer/style-transfer.ppm" alt="" class="style_transfer_logo" style="width: 100%;"/></a>
+							</div>
+						</header>
+
+						<!-- Content -->
+							<div class="wrapper">
+								<div class="inner">
+									<section class="features">
+                                        <dvi>
+                                            <h2 class="major" style="text-align: left;">Introduction</h2>
+                                            <p>
+                                                Neural style transfer combines the content of one image with the style of another using a pretrained
+                                                convolutional neural network. By extracting content and style features, and defining loss functions to
+                                                measure their differences, the network optimizes the generated image to minimize content and style
+                                                losses. Through an iterative optimization process, the pixel values are adjusted to create a new image that
+                                                preserves the content of the input image while adopting the artistic style of the reference image.
+                                                Fine-tuning and post-processing steps further enhance the stylized output
+                                            </p>
+                                            <p>
+                                                Neural style transfer can be used to make image filters much more versatile as it is possible to change the
+                                                style of an image, it can be done by simply providing the CNN model with the image whose style you
+                                                want to be transferred to your image.
+                                            </p>
+                                        </dvi>
+                                        <div>
+                                            <h2 class="major" style="text-align: left;">Working of Neural Style Transfer</h2>
+                                            <p>
+                                                Neural style transfer involves combining the content of one image with the artistic style of another image
+                                                to create a visually appealing output image. Here's a simplified explanation of its working:
+                                            </p>
+                                            <ol>
+                                                <li><h3>Pretrained Convolutional Neural Network (CNN):</h3>
+                                                    The first step is to use a pretrained CNN, such as VGGNet, which has been trained on a large dataset for image recognition tasks. This network serves as
+                                                     a feature extractor.
+                                                </li><br>
+                                                <li><h3>Content Representation:</h3>
+                                                    The content image is passed through the pretrained CNN, and the activations of selected layers are extracted. These activations represent the content of the image and
+                                                     capture high-level features such as shapes and objects.
+                                                </li><br>
+                                                <li><h3>Style Representation:</h3>
+                                                    Similarly, the style image is also passed through the same CNN, and the activations of chosen layers are extracted. However, instead of focusing on the content, these activations
+                                                     capture the texture, colors, and overall artistic style of the image.
+                                                </li><br>
+                                                <li><h3>Gram Matrix Computation:</h3>
+                                                    The extracted feature maps from the style image are used to compute the Gram matrix, which represents the correlations between different features. This matrix captures the
+                                                     style information by quantifying the relationships between different texture patterns.
+                                                </li><br>
+                                                <li><h3>Output Image Generation:</h3>
+                                                    A random image, typically the content image or a noise image, is initialized. The goal is to transform this image to have the content of the content image and the style of
+                                                     the style image.
+                                                </li><br>
+                                                <li><h3>Loss Function Minimization:</h3>
+                                                    The loss function consists of two components: the content loss and
+                                                     the style loss. The content loss measures the difference between the feature representations of the output
+                                                     image and the content image. The style loss quantifies the difference between the Gram matrices of the
+                                                     output image and the style image.
+                                                </li><br>
+                                                <li><h3>Optimization:</h3>
+                                                    The loss function is minimized using an optimization algorithm, such as gradient
+                                                     descent, to iteratively update the pixel values of the output image. This process continues until the loss is
+                                                     minimized, resulting in an output image that combines the desired content and style.
+                                                </li><br>
+                                                <li><h3> Fine-Tuning and Post-Processing:</h3>
+                                                    Additional steps, such as fine-tuning or applying
+                                                     post-processing techniques like color adjustments or noise reduction, can be performed to enhance the
+                                                     final output.
+                                                </li><br>
+                                            </ol>
+                                            <img src="images/Style-transfer/NST_working.png" alt="" class="style_transfer">
+                                        </div>
+                                        <div>
+                                            <h2 class="major" style="text-align: left;">Loss functions</h2>
+                                            <div>
+                                                <h3 class="major" style="text-align: left;">CONTENT LOSS</h3>
+                                                <p>
+                                                    Calculating content loss means how similar is the randomly generated noisy image(G) to the content image(C).In order to calculate content loss :
+                                                </p>
+                                                <p>
+                                                    Assume that we choose a hidden layer (L) in a pre-trained network(VGG network) to compute the
+                                                     loss.Therefore, let P and F be the original image and the image that is generated.And, F[l] and P[l] be
+                                                     feature representation of the respective images in layer L.Now,the content loss is defined as follows:
+                                                </p>
+                                                <img src="images/Style-transfer/content_loss.png" alt="" class="style_transfer">
+                                            </div>
+                                            <div>
+                                                <h3 class="major" style="text-align: left;">STYLE LOSS</h3>
+                                                <div>
+                                                    <h4>GramMatrix of style image</h4>
+                                                    <p>Here k and k' represents different filters or channels of the layer L. Let's call this Gkk'[l][S].</p>
+                                                    <img src="images/Style-transfer/gram_matrix_si.png" alt="" class="style_transfer">
+                                                </div>
+                                                <div>
+                                                    <h4>Grammatrix of generated image</h4>
+                                                    <p>Here k and k' represents different filters or channels of the layer L.Let's call this Gkk'[l][G].</p>
+                                                    <img src="images/Style-transfer/gram_matrix_gi.png" alt="" class="style_transfer">
+                                                </div>
+                                                <div>
+                                                    <h4> Style cost function</h4>
+                                                    <p>Cost function between Style and Generated Image is the square of difference between the Gram Matrix of
+                                                        the style Image with the Gram Matrix of generated Image.</p>
+                                                    <img src="images/Style-transfer/style_cost.png" alt="" class="style_transfer">
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <h3 class="major" style="text-align: left;">TOTAL LOSS</h3>
+                                                <p> The total loss function is the sum of the cost of the content and the style image.Mathematically,it can be
+                                                    expressed as :</p>
+                                                <img src="images/Style-transfer/total_loss.png" alt="" class="style_transfer">
+                                                <p>
+                                                    <ul>
+                                                        <li>
+                                                            Ɑ-Alpha represents the weight or importance assigned to the content loss. A higher value of
+                                                             alpha emphasizes preserving the content of the input image in the generated stylized image. It controls
+                                                             how much the stylized image resembles the content image in terms of shapes, objects, and structures.
+                                                        </li>
+                                                        <li>
+                                                            β-Beta represents the weight or importance assigned to the style loss. A higher value of beta
+                                                             accentuates the style transfer aspect, prioritizing the artistic style of the reference image in the generated
+                                                             stylized image. It controls the level of texture, color, and visual patterns borrowed from the style image.
+                                                        </li>
+                                                    </ul>
+                                                </p>
+                                                <p>
+                                                    The values of alpha and beta are typically set before the optimization process begins. Fine-tuning these
+                                                     hyperparameters allows users to adjust the balance between content and style, leading to different visual
+                                                     effects and stylization outcomes. The optimal values of alpha and beta depend on the desired artistic
+                                                     result and can vary depending on the specific neural style transfer implementation or application.
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <dvi>
+                                            <h2 class="major" style="text-align: left;">IMPLEMENTATION</h2>
+                                            <div>
+                                                <h3>Importing requirements</h3>
+                                                <img src="images/Style-transfer/import.png" alt="" class="style_transfer_imp">
+                                                <br>
+                                            </div>
+                                            <br><br>
+                                            <div>
+                                                <h3>Helper functions</h3>
+                                                <img src="images/Style-transfer/helper_fn.png" alt="" class="style_transfer_imp"><br>
+                                            </div>
+                                            <br><br>
+                                            <div>
+                                                <h3>defining model</h3>
+                                                <img src="images/Style-transfer/model_1.png" alt="" class="style_transfer_imp"><br>
+                                                <img src="images/Style-transfer/model_2.png" alt="" class="style_transfer_imp"><br>
+                                            </div>
+                                            <br><br>
+                                            <div>
+                                                <h3>Loss Function</h3>
+                                                <img src="images/Style-transfer/loss_1.png" alt="" class="style_transfer_imp"><br>
+                                                <img src="images/Style-transfer/loss_2.png" alt="" class="style_transfer_imp"><br>
+                                            </div>
+                                            <br><br>
+                                            <div>
+                                                <h3>Model Training</h3>
+                                                <img src="images/Style-transfer/train_1.png" alt="" class="style_transfer_imp"><br>
+                                                <img src="images/Style-transfer/train_2.png" alt="" class="style_transfer_imp"><br>
+                                                <img src="images/Style-transfer/train_3.png" alt="" class="style_transfer_imp"><br>
+                                            </div>
+                                        </dvi>
+									</section>
+                                    <ul class="actions">
+                                        <li><a href="projects.html" class="button">Go Back</a></li>
+                                        <li><a href="index.html" class="button">Home</a></li>
+                                    </ul>
+								</div>
+							</div>
+
+					</section>
+
+				<!-- Footer -->
+				<section id="footer">
+					<div class="inner">
+						<h2 class="major">contact Me</h2>
+						<ul class="contact">
+							<li class="icon solid fa-phone">(+91) 74008-30032</li>
+							<li class="icon solid fa-envelope"><a href="#">singh3112aditya@gmail.com</a></li>
+							<li class="icon brands fa-linkedin-in"><a href="https://www.linkedin.com/in/aditya-singh-2a2066212/" target="_blank">LinkedIn</a></li>
+						</ul>
+					</div>
+				</section>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

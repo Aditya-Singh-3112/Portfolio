@@ -1,0 +1,238 @@
+<!DOCTYPE HTML>
+<!--
+	Solid State by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Projects - Aditya Singh</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Page Wrapper -->
+			<div id="page-wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<h1><a href="index.html">Aditya Singh</a></h1>
+						<nav>
+							<a href="#menu">Menu</a>
+						</nav>
+					</header>
+
+				<!-- Menu -->
+					<nav id="menu">
+						<div class="inner">
+							<h2>Menu</h2>
+							<ul class="links">
+								<li><a href="index.html">Home</a></li>
+								<li><a href="projects.html">Projects</a></li>
+							</ul>
+							<a href="#" class="close">Close</a>
+						</div>
+					</nav>
+
+				<!-- Wrapper -->
+					<section id="wrapper">
+						<header>
+							<div class="inner">
+								<h2>IMAGE Segmentation</h2>
+                                <ul class="contact">
+                                    <li class="icon brands fa-github"><a href="https://github.com/Aditya-Singh-3112/Image_segmentation/tree/main" target="_blank">Get the code on GitHub</a></li>
+                                </ul>
+                                <a class="image"><img src="images/img_segmentation.png" alt="" style="width: 100%;"/></a>
+							</div>
+						</header>
+
+						<!-- Content -->
+							<div class="wrapper">
+								<div class="inner">
+									<section class="features">
+                                        <div>
+                                            <h2 class="major" style="text-align: left;">Introduction</h2>
+                                            <p>
+                                                Image segmentation is a computer vision task that involves dividing an image into meaningful and semantically coherent regions or segments. The goal is to partition an image into regions that share similar visual properties, such as color, texture, or intensity, while being distinct from surrounding areas. Image segmentation is a crucial step in many computer vision applications, including object recognition, scene understanding, and medical image analysis. 
+                                            </p>
+                                            <p>
+                                                To build the U-Net for image segmentation, I have used the MobileNetV2 model for encoding (or down-sampling) and the Pix2Pix model for decoding (or up-sampling).
+                                            </p>
+                                            <h2 class="major" style="text-align: left;">U-NET Architecture</h2>
+                                            <p>
+                                                The U-Net architecture is a convolutional neural network (CNN) designed for semantic segmentation tasks, where the goal is to partition an image into distinct regions and assign each pixel to a specific class. U-Net was introduced by Olaf Ronneberger, Philipp Fischer, and Thomas Brox in 2015 and has since become a popular choice for biomedical image segmentation and other applications.
+                                            </p>
+                                            <p>
+                                                The U-Net architecture is characterized by a U-shaped structure, which consists of a contracting path, a bottleneck, and an expansive path. Here's a breakdown of its key components:
+                                            </p>
+                                            <ol>
+                                                <li><h4>Contracting Path (Encoder):</h4>
+                                                    The input image is processed through a series of convolutional and pooling layers, reducing spatial dimensions while increasing the number of feature channels. Each convolutional layer is typically followed by rectified linear unit (ReLU) activation functions to introduce non-linearity.
+                                                </li><br>
+                                                <li><h4>Bottleneck:</h4>
+                                                    At the center of the U-Net is the bottleneck, which consists of several convolutional layers. This stage captures high-level semantic information from the input image.
+                                                </li><br>
+                                                <li><h4>Expansive Path (Decoder):</h4>
+                                                    The expansive path consists of up-sampling and convolutional layers to gradually increase spatial resolution. Skip connections, or concatenation operations, are introduced between corresponding layers in the contracting and expansive paths. These skip connections help to retain fine-grained details during the up-sampling process.
+                                                </li><br>
+                                                <li><h4>Final Layer:</h4>
+                                                    The final layer typically employs a 1x1 convolution to produce the segmentation mask with the same spatial dimensions as the input image. The output values represent the likelihood or probability of each pixel belonging to a particular class.
+                                                </li>
+                                            </ol>
+                                            <img src="images/img_seg/u_net.jpg" alt="" class="u-net">
+                                        </div>
+                                        <div>
+                                            <h2 class="major" style="text-align: left;">MobileNetV2</h2>
+                                            <p>
+                                                A lightweight convolutional neural network (CNN) architecture, MobileNetV2, is specifically designed for mobile and embedded vision applications. Google researchers developed it as an enhancement over the original MobileNet model. Another remarkable aspect of this model is its ability to strike a good balance between model size and accuracy, rendering it ideal for resource-constrained devices.
+                                                <br>
+                                            </p>
+                                            <h3>Architecture</h3>
+                                            <p>
+                                                The architecture of MobileNetV2 consists of a series of convolutional layers, followed by depthwise separable convolutions, inverted residuals, bottleneck design, linear bottlenecks, and squeeze-and-excitation (SE) blocks. These components work together to reduce the number of parameters and computations required while maintaining the model's ability to capture complex features.
+                                                <ol>
+                                                    <li><h4>Depthwise Separable Convolution : </h4>
+                                                        Depthwise separable convolution is a technique used in MobileNetV2 to reduce the computational cost of convolutions. It separates the standard convolution into two separate operations: depthwise convolution and pointwise convolution. This separation significantly reduces the number of computations required, making the model more efficient.
+                                                    </li>
+
+                                                    <li><h4>Inverted Residuals : </h4>
+                                                        Inverted residuals are a key component of MobileNetV2 that helps improve the model's accuracy. They introduce a bottleneck structure that expands the number of channels before applying depthwise separable convolutions. This expansion allows the model to capture more complex features and enhance its representation power.
+                                                    </li>
+
+                                                    <li><h4>Bottleneck Design : </h4>
+                                                        The bottleneck design in MobileNetV2 further reduces the computational cost by using 1x1 convolutions to reduce the number of channels before applying depthwise separable convolutions. This design choice helps maintain a good balance between model size and accuracy.
+                                                    </li>
+
+                                                    <li><h4>Linear Bottlenecks : </h4>
+                                                        Linear bottlenecks are introduced in MobileNetV2 to address the issue of information loss during the bottleneck process. By using linear activations instead of non-linear activations, the model preserves more information and improves its ability to capture fine-grained details.
+                                                    </li>
+
+                                                    <li><h4>Squeeze-and-Excitation (SE) Blocks : </h4>
+                                                        Squeeze-and-excitation (SE) blocks are added to MobileNetV2 to enhance its feature representation capabilities. These blocks adaptively recalibrate the channel-wise feature responses, allowing the model to focus on more informative features and suppress less relevant ones.
+                                                    </li>
+                                                </ol>
+                                                <img src="images/img_seg/mobinet.png" alt="" class="u-net">
+                                            </p>
+                                        </div>
+                                        <div>
+                                            <h2 class="major" style="text-align: left;">Pix2Pix</h2>
+                                            <p>
+                                                Pix2Pix, short for "Image-to-Image Translation with Conditional Adversarial Networks," is a generative adversarial network (GAN) architecture designed for image-to-image translation tasks. It was introduced by Phillip Isola, Jun-Yan Zhu, Tinghui Zhou, and Alexei A. Efros in 2017. Pix2Pix is particularly well-known for its ability to transform images from one domain to another, often producing realistic and high-quality results.
+                                            </p>
+                                            <h3>Pix2Pix decoder (up-sampler)</h3>
+                                            <p>
+                                                Pix2Pix employs a U-Net-like architecture for its generator, where the decoder (or up-sampler) is responsible for reconstructing the output image from the features extracted by the encoder. The decoder is crucial in restoring the spatial resolution of the image after it has been down-sampled by the encoder. Here are the key features of the Pix2Pix decoder:
+                                            </p>
+                                            <ol>
+                                                <li><h4>Skip Connections:</h4>
+                                                    One distinctive characteristic of Pix2Pix's decoder is the use of skip connections, also known as skip or residual connections. These connections link corresponding layers in the encoder and decoder. They help in preserving fine details and spatial information that might be lost during down-sampling.
+                                                </li>
+                                                <li><h4>Up-sampling Layers:</h4>
+                                                    The up-sampling layers in the decoder are responsible for increasing the spatial resolution of the features obtained from the encoder. Common up-sampling techniques include transposed convolutions (also known as deconvolutions or fractionally strided convolutions) or nearest-neighbor up-sampling followed by regular convolutions.
+                                                </li>
+                                                <li><h4>Convolutional Layers:</h4>
+                                                    Convolutional layers within the decoder process the up-sampled features, extracting and refining information to generate the final output. These layers may include batch normalization and activation functions (e.g., ReLU) to introduce non-linearity.
+                                                </li>
+                                                <li><h4>Output Layer:</h4>
+                                                    The final layer of the decoder produces the output image. It often uses a convolutional layer with an appropriate activation function (e.g., Tanh for pixel values in the range [-1, 1]).
+                                                </li>
+                                                <li><h4>L1 Loss Integration:</h4>
+                                                    The output of the decoder is compared to the ground truth using an L1 loss (pixel-wise loss). This loss encourages the generated image to closely match the target domain at the pixel level.
+                                                </li>
+                                                <li><h4>Training with Adversarial Loss:</h4>
+                                                    The decoder, like the entire generator, is trained in conjunction with the adversarial loss, ensuring that the generated image is realistic and indistinguishable from images in the target domain according to the discriminator.
+                                                </li>
+                                            </ol>
+                                            <img src="images/img_seg/pix2pix.png" alt="" class="u-net">
+                                        </div>
+                                        <div>
+                                            <h2 class="major" style="text-align: left;">Dataset</h2>
+                                            <p>
+                                                The dataset used here is the "oxford_iiit_pet" dataset. The Oxford-IIIT pet dataset is a 37 category pet image dataset with roughly 200 images for each class. The images have large variations in scale, pose and lighting. All images have an associated ground truth annotation of breed.
+                                            </p>
+                                            <p>
+                                                The train set contains 3,680 expamples and the test set contains 3,669 expamples.
+                                            </p>
+                                            <h4>Feature Documentation : </h4>
+                                            <img src="images/img_seg/data_feature.png" alt="" class="img_seg_dataset"> 
+                                            <img src="images/img_seg/data_2.png" alt="" class="img_seg_dataset">
+                                            <img src="images/img_seg/data_3.png" alt="" class="img_seg_dataset">                                         
+                                        </div>
+                                        <div>
+                                            <h2 class="major" style="text-align: left;">Model Training</h2>
+                                            <div>
+                                                <h3>Importing required libraries and the dataset</h3>
+                                                <p >To install tensorflow_examples run <div  style="width: 100%;"><code>pip install -q git+https://github.com/tensorflow/examples.git</code></div><br>
+                                                To install tensorflow_datasets run <code>pip install tensorflow-datasets</code></p>
+                                                <img src="images/img_seg/1.png" alt="" class="img_seg_dataset">
+                                            </div>
+                                            <div>
+                                                <h3>Loading the dataset</h3>
+                                                <img src="images/img_seg/2.png" alt="" class="img_seg_dataset">
+                                                <img src="images/img_seg/3.png" alt="" class="img_seg_dataset">
+                                            </div>
+                                            <div>
+                                                <h3>Building the model</h3>
+                                                <p>For the encoder part of the U-Net I am using the <code>block_1_expand_relu</code>, 
+                                                    <code>block_3_expand_relu</code>, 
+                                                    <code>block_6_expand_relu</code>, 
+                                                    <code>block_13_expand_relu</code> and 
+                                                    <code>block_16_project</code> layers of the MobileNetV2 model.</p>
+                                                <p>For the decoder part of the U-Net I am using the <code>pix2pix.upsample(512, 3)</code>, 
+                                                    <code>pix2pix.upsample(256, 3)</code>, 
+                                                    <code>pix2pix.upsample(128, 3)</code> and
+                                                    <code>pix2pix.upsample(64, 3)</code> layers of the Pix2Pix model.</p>
+                                                <img src="images/img_seg/4.png" alt="" class="img_seg_dataset">
+                                                <p>Model Summary:</p>
+                                                <img src="images/img_seg/5.png" alt="" class="img_seg_dataset">
+                                            </div>
+                                            <div>
+                                                <h3>Training the model</h3>
+                                                <img src="images/img_seg/7.png" alt="" class="img_seg_dataset">
+                                                <img src="images/img_seg/9.png" alt="" class="img_seg_dataset">
+                                            </div>
+                                            <div>
+                                                <h3>Model results</h3>
+                                                <p>The model achieved <code>93.77%</code> Training accuracy and <code>88.96%</code> Evaluation accuracy</p>
+                                                <img src="images/img_seg/10.png" alt="" class="img_seg_dataset">
+                                            </div>
+                                            <br>
+
+                                        </div>
+									</section>
+                                    <ul class="actions">
+                                        <li><a href="projects.html" class="button">Go Back</a></li>
+                                        <li><a href="index.html" class="button">Home</a></li>
+                                    </ul>
+								</div>
+							</div>
+
+					</section>
+
+				<!-- Footer -->
+				<section id="footer">
+					<div class="inner">
+						<h2 class="major">contact Me</h2>
+						<ul class="contact">
+							<li class="icon solid fa-phone">(+91) 74008-30032</li>
+							<li class="icon solid fa-envelope"><a href="#">singh3112aditya@gmail.com</a></li>
+							<li class="icon brands fa-linkedin-in"><a href="https://www.linkedin.com/in/aditya-singh-2a2066212/" target="_blank">LinkedIn</a></li>
+						</ul>
+					</div>
+				</section>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

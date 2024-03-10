@@ -1,0 +1,144 @@
+<!DOCTYPE HTML>
+<!--
+	Solid State by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Projects - Aditya Singh</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Page Wrapper -->
+			<div id="page-wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<h1><a href="index.html">Aditya Singh</a></h1>
+						<nav>
+							<a href="#menu">Menu</a>
+						</nav>
+					</header>
+
+				<!-- Menu -->
+					<nav id="menu">
+						<div class="inner">
+							<h2>Menu</h2>
+							<ul class="links">
+								<li><a href="index.html">Home</a></li>
+								<li><a href="projects.html">Projects</a></li>
+							</ul>
+							<a href="#" class="close">Close</a>
+						</div>
+					</nav>
+
+				<!-- Wrapper -->
+					<section id="wrapper">
+						<header>
+							<div class="inner">
+								<h2>Style Transfer</h2>
+                                <ul class="contact">
+                                    <li class="icon brands fa-github"><a href="https://github.com/Aditya-Singh-3112/digit_detection" target="_blank">Get the code on GitHub</a></li>
+                                </ul>
+                                <a class="image"><img src="images/digit_detection/Hand_Written_Digit_Detection.png" alt="" class="style_transfer_logo" style="width: 100%;"/></a>
+							</div>
+						</header>
+
+						<!-- Content -->
+							<div class="wrapper">
+								<div class="inner">
+									<section class="features">
+                                        <div>
+                                            <h2 class="major" style="text-align: left;">Introduction</h2>
+                                            <p>
+                                                In this project, we are going to use the MNIST dataset for the implementation of a handwritten digit recognition app. To implement this we will use a special type of deep neural network called Convolutional Neural Networks
+                                            </p>
+                                        </div>
+                                        <div>
+                                            <h2 class="major" style="text-align: left;">MNIST dataset</h2>
+                                            <p>
+                                                The MNIST dataset is a widely used dataset in the field of machine learning and computer vision. It stands for the "Modified National Institute of Standards and Technology" dataset. MNIST is a collection of 28x28 pixel grayscale images of handwritten digits (0 through 9) and their corresponding labels. It serves as a benchmark for testing and evaluating various machine learning algorithms, particularly those related to image recognition and classification.
+                                            </p>
+                                            <p>
+                                                The MNIST dataset has played a crucial role in advancing the field of computer vision and deep learning. Many beginners use it as a starting point for learning and implementing algorithms, and it has served as the foundation for developing and testing sophisticated neural networks, including Convolutional Neural Networks (CNNs). The simplicity and accessibility of MNIST make it a valuable resource for educational purposes and a benchmark for evaluating the effectiveness of new machine learning techniques.
+                                            </p>
+                                            <img src="images/digit_detection/mnist_data.png" alt="" class="mnist_data">
+                                        </div>
+                                        <br><br>
+                                        <div>
+                                            <h2 class="major" style="text-align: left;">Import libraries and dataset</h2>
+                                            <P>We import every module required to train our model at the start of the project. Since MNIST is one of the many datasets currently included in the TensorFlow framework, we can import the dataset and get to work right away. To obtain training data with labels and testing data with labels, we utilize the mnist.load_data() function.
+                                            </P>
+                                            <img src="images/digit_detection/import.png" alt="" class="mnist"><br><br>
+                                        </div>
+                                        
+                                        <div>
+                                            <h2 class="major" style="text-align: left;">Data exploration and Preprocessing</h2>
+                                            <p>We divide the data into a train and test set in this stage and make sure the data is in the right format.</p>
+                                            <img src="images/digit_detection/data1.png" alt="" class="mnist">
+                                            <img src="images/digit_detection/data2.png" alt="" class="mnist">
+                                            <img src="images/digit_detection/data3.png" alt="" class="mnist"><br><br>
+                                        </div>
+                                        
+                                        <dvi>
+                                            <h2 class="major" style="text-align: left;">Creating the model</h2>
+                                            <p>Lets begin constructing the CNN model, for this data science project in Python. The key components of a CNN model are pooling layers and convolutional layers. CNN is effective for image classification tasks as it can handle data arranged in a grid format. To compile the model we will use the Sparse Categorical Crossentropy loss function along, with the Adam optimizer.</p>
+                                            <img src="images/digit_detection/model1.png" alt="" class="mnist">
+                                            <img src="images/digit_detection/model2.png" alt="" class="mnist"><br><br>
+                                        </dvi>
+                                        
+                                        <div>
+                                            <h2 class="major" style="text-align: left;">Training the model</h2>
+                                            <p>To train the model we will use the <code>.fit()</code> function. For validation we set <code>validation_split = 0.2</code>, which ensures 
+                                            that 20% of the training data is used for validation.</p>
+                                            <img src="images/digit_detection/train.png" alt="" class="mnist"><br><br>
+                                        </div>
+                                        
+                                        <div>
+                                            <h2 class="major" style="text-align: left;">evaluating the model</h2>
+                                            <p>
+                                                In the test set, the model's accuracy was <code>96.84%</code>.
+                                            </p>
+                                            <img src="images/digit_detection/eval1.png" alt="" class="mnist">
+                                            <img src="images/digit_detection/eval2.png" alt="" class="mnist"><br><br>
+                                        </div>
+                                        
+									</section>
+                                    <ul class="actions">
+                                        <li><a href="projects.html" class="button">Go Back</a></li>
+                                        <li><a href="index.html" class="button">Home</a></li>
+                                    </ul>
+								</div>
+							</div>
+
+					</section>
+
+				<!-- Footer -->
+				<section id="footer">
+					<div class="inner">
+						<h2 class="major">contact Me</h2>
+						<ul class="contact">
+							<li class="icon solid fa-phone">(+91) 74008-30032</li>
+							<li class="icon solid fa-envelope"><a href="#">singh3112aditya@gmail.com</a></li>
+							<li class="icon brands fa-linkedin-in"><a href="https://www.linkedin.com/in/aditya-singh-2a2066212/" target="_blank">LinkedIn</a></li>
+						</ul>
+					</div>
+				</section>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

@@ -1,0 +1,175 @@
+<!DOCTYPE HTML>
+<!--
+	Solid State by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Projects - Aditya Singh</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Page Wrapper -->
+			<div id="page-wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<h1><a href="index.html">Aditya Singh</a></h1>
+						<nav>
+							<a href="#menu">Menu</a>
+						</nav>
+					</header>
+
+				<!-- Menu -->
+					<nav id="menu">
+						<div class="inner">
+							<h2>Menu</h2>
+							<ul class="links">
+								<li><a href="index.html">Home</a></li>
+								<li><a href="projects.html">Projects</a></li>
+							</ul>
+							<a href="#" class="close">Close</a>
+						</div>
+					</nav>
+
+				<!-- Wrapper -->
+					<section id="wrapper">
+						<header>
+							<div class="inner">
+								<h2>LLM CHATBOT</h2>
+                                <ul class="contact">
+                                    <li class="icon brands fa-github"><a href="https://github.com/Aditya-Singh-3112/Llama2_QLoRA_finetuned" target="_blank">Get the code on GitHub</a></li>
+                                </ul>
+                                <a class="image"><img src="images/Llama 2.webp" alt="" style="width: 100%;"/></a>
+							</div>
+						</header>
+
+						<!-- Content -->
+							<div class="wrapper">
+								<div class="inner">
+									<section class="features">
+                                        <h2 class="major" style="text-align: left;">Introduction</h2>
+                                        <p>                                           
+                                            Integrating Large Language Models (LLMs) as customer support agents offers businesses notable advantages, including enhanced efficiency 
+                                            through the automation of routine queries, 24/7 availability, scalability, consistent responses, multilingual support, and quick response 
+                                            times. LLMs contribute to improved customer satisfaction by addressing inquiries promptly and maintaining a high level of knowledge retention. 
+                                            However, considerations such as the potential challenges in handling complex queries and emotionally charged interactions, ethical use and bias 
+                                            mitigation, the necessity of human oversight for quality assurance, and the importance of continuous improvement through updates and fine-tuning 
+                                            are crucial for a successful deployment. Striking a balance between the capabilities of LLMs and the essential human touch ensures a comprehensive 
+                                            and effective customer support strategy.
+                                        </p>
+                                        <h2 class="major" style="text-align: left;">Model Selection</h2>
+                                        <p>
+                                            I compared some popular LLM models such as GPT-3, Llama-2, GPT-NeoX and BERT. The models were compared according to 
+                                            their results in the ARC benchmark. Considering the computational limitations of my NVIDIA RTX 3060(12 GB) and Ryzen 5600
+                                            I decided to use the Llama 2 (7B) model for implementation in light of the computing limitations and the ARC scores.
+                                            <br>
+                                            <img src="images/LLm_compare.png" alt="" class="LLM_table" />
+                                            However, the model remained too large to adjust locally on the device. To solve this issue, I made use of LoRA and PEFT.
+                                        </p>
+                                        <h2 class="major" style="text-align: left;">LoRA</h2>
+                                        <p>
+                                            Large language models are large, and it can be expensive to update all model weights during training due to GPU memory limitations. 
+                                            <br>
+                                            For example, suppose we have an LLM with 7B parameters represented in a weight matrix W. (In reality, the model parameters are, of course, distributed across different matrices in many layers,
+                                            but for simplicity, we refer to a single weight matrix here). During backpropagation, we learn a ΔW matrix, which contains information on how much we want to update the original weights to minimize the loss function during training.
+                                            The weight update is then as follows:
+                                            <br><br>
+                                            W_updated = W + ΔW
+                                            <br><br>
+                                            If the weight matrix W contains 7B parameters, then the weight update matrix ΔW also contains 7B parameters, and computing the matrix ΔW can be very compute and memory intensive.
+                                            <br><br>
+                                            The LoRA method proposed by Hu et al. replaces to decompose the weight changes, ΔW, into a lower-rank representation. To be precise,
+                                            it does not require to explicitly compute ΔW. Instead, LoRA learns the decomposed representation of ΔW directly during training which is where the savings are coming from, as shown in the figure below.
+                                            <br><br>
+                                            <img src="images/LoRA.webp" alt="" class="LoRA">
+                                            <br>
+                                            As illustrated above, the decomposition of ΔW means that we represent the large matrix ΔW with two smaller LoRA matrices, A and B. If A has the same number of rows as ΔW and B has the same number of columns as ΔW, we can write the decomposition as ΔW = AB. (AB is the matrix multiplication result between matrices A and B.) 
+                                        </p>
+                                        <h2 class="major" style="text-align: left;">PEFT</h2>
+                                        <p>
+                                            Fine-tuning large pretrained models is often prohibitively costly due to their scale. Parameter-Efficient Fine-Tuning (PEFT) methods enable efficient adaptation
+                                            of large pretrained models to various downstream applications by only fine-tuning a small number of (extra) model parameters instead of all the model's parameters. This significantly decreases the computational and storage costs. Recent state-of-the-art
+                                            PEFT techniques achieve performance comparable to fully fine-tuned models.
+                                        </p>
+                                        <h2 class="major" style="text-align: left;">Dataset</h2>
+                                        <p>
+                                            The dataset used for fine tuning is the 
+                                            “<a href="https://huggingface.co/datasets/lamini/lamini_docs" target="_blank">lamini/lamini_docs</a>” dataset by Lamini 
+                                            on huggingface. The dataset consist of 
+                                            questions and answers about the 
+                                            company Lamini.
+
+                                            It has a train-test split with 1,260 rows in the train data and 140 rows in the test data.
+                                            <img src="images/Lamini-docs.png" alt="" class="Lamini">
+                                        </p>
+                                        <div>
+                                            <h2 class="major" style="text-align: left;">Fine-tuning Llama-2</h2>
+                                            <div>
+                                                <h3>Initializing the requirements</h3>
+                                                <p>In this section we import the required libraries and initialize the base model along with its tokenizer and a BitsandBytes config.<br>
+                                                    Given below is the python code for fine tuning Llama-2. In the code <code>token = "Your_Token"</code> replace "Your_Token" with your access token.
+                                                    <img src="images/1.png" alt="" class="code">
+                                                </p>
+                                            </div>
+                                            <div>
+                                                <br>
+                                                <h3>Loading and Preparing the dataset</h3>
+                                                <img src="images/2.png" alt="" class="code">
+                                                <img src="images/3.png" alt="" class="code">
+                                            </div>
+                                            <div>
+                                                <br><br>
+                                                <h3>Preparing the model for training</h3>
+                                                <img src="images/4.png" alt="" class="code">
+                                                <br>
+                                                <P>By using PEFT and LoRA we only need to train <code>4194304</code> of the total <code>6742609920</code> parameters, i.e. we only need to train <code>6.22%%</code> of the total parametes</P>
+                                            </div>
+                                            <div>
+                                                <br><br>
+                                                <h3>Training the model</h3>
+                                                <img src="images/5.png" alt="" class="code">
+                                            </div>
+                                            <img src="images/6.png" alt="" class="code">
+                                            <br><br>
+                                            This fine-tuned model can be found on "<a href="https://huggingface.co/AdityaSingh312/Llama-7b-lamini-docs" target="_blank">AdityaSingh312/Llama-7b-lamini-docs</a>" for use.
+                                        </div>
+									</section>
+                                    <ul class="actions">
+                                        <li><a href="projects.html" class="button">Go Back</a></li>
+                                        <li><a href="index.html" class="button">Home</a></li>
+                                    </ul>
+								</div>
+							</div>
+
+					</section>
+
+				<!-- Footer -->
+				<section id="footer">
+					<div class="inner">
+						<h2 class="major">contact Me</h2>
+						<ul class="contact">
+							<li class="icon solid fa-phone">(+91) 74008-30032</li>
+							<li class="icon solid fa-envelope"><a href="#">singh3112aditya@gmail.com</a></li>
+							<li class="icon brands fa-linkedin-in"><a href="https://www.linkedin.com/in/aditya-singh-2a2066212/" target="_blank">LinkedIn</a></li>
+						</ul>
+					</div>
+				</section>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

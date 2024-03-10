@@ -1,0 +1,148 @@
+<!DOCTYPE HTML>
+<!--
+	Solid State by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Projects - Aditya Singh</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Page Wrapper -->
+			<div id="page-wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<h1><a href="index.html">Aditya Singh</a></h1>
+						<nav>
+							<a href="#menu">Menu</a>
+						</nav>
+					</header>
+
+				<!-- Menu -->
+					<nav id="menu">
+						<div class="inner">
+							<h2>Menu</h2>
+							<ul class="links">
+								<li><a href="index.html">Home</a></li>
+								<li><a href="projects.html">Projects</a></li>
+							</ul>
+							<a href="#" class="close">Close</a>
+						</div>
+					</nav>
+
+				<!-- Wrapper -->
+					<section id="wrapper">
+						<header>
+							<div class="inner">
+								<h2>Lip Reading</h2>
+                                <ul class="contact">
+                                    <li class="icon brands fa-github"><a href="https://github.com/Aditya-Singh-3112/Lip_reading" target="_blank">Get the code on GitHub</a></li>
+                                </ul>
+                                <a class="image"><img src="images/lip_reading/logo.png" alt="" class="style_transfer_logo" style="width: 100%;"/></a>
+							</div>
+						</header>
+
+						<!-- Content -->
+							<div class="wrapper">
+								<div class="inner">
+									<section class="features">
+                                       <div>
+                                        <h2 class="major">Introduction</h2>
+                                        <p>
+                                            This project focuses on leveraging TensorFlow to build and train a neural network for lip reading. The significance lies in promoting accessibility for individuals with hearing impairments, improving human-computer interaction, and contributing to the forefront of technological advancements in artificial intelligence. The integration of deep learning principles showcases the potential for addressing real-world challenges and shaping the future of technology.
+                                        </p>
+                                       </div>
+                                       <div>
+                                        <h2 class="major">Dataset</h2>
+                                        <p>
+                                            The dataset used for this project is a portion of the GRID dataset used in the orignal <a href="https://arxiv.org/abs/1611.01599">LipNet paper</a>.
+                                            The GRID corpus consists of 34 subjects, each narrating 1000 sentences. The
+                                            videos for speaker 21 are missing, and a few others are empty or corrupt, leaving 32746 usable videos.
+                                        </p>
+                                       </div>
+                                       <div>
+                                        <h2 class="major">Import Dependencies</h2>
+                                        <p>
+                                            <code>physical_devices = tf.config.list_physical_devices('GPU')</code> : Lists available physical GPU devices.
+                                        </p>
+                                        <p>
+                                            <code>tf.config.experimental.set_memory_growth(physical_devices[0], True)</code> : Sets GPU memory growth to True for the first GPU device if available. This allows TensorFlow to allocate memory on the GPU as needed, preventing it from allocating the entire GPU memory upfront.
+                                        </p>
+                                        <img src="images/lip_reading/import.png" alt="" class="lip_read"><br><br>
+                                       </div>
+                                       <div>
+                                        <h2 class="major">Build Data Loading Functions</h2>
+                                        <p>
+                                            The provided code is a Python script for loading and processing data. It uses the gdown library to download a zip file from Google Drive, extracts its contents, and defines functions for loading video frames and corresponding text alignments. The <code>load_video</code> function reads a video file, converts frames to grayscale, extracts a specific region of interest, and normalizes pixel values. The script defines a vocabulary for characters and maps them to numerical indices. 
+                                            The <code>load_alignments</code> function processes text alignment files, excluding silence tokens. The <code>load_data</code> function combines video frames and text alignments based on the provided file path. Lastly, the <code>mappable_function</code> utilizes TensorFlow's <code>py_function</code> to create a map function for efficient data loading in a TensorFlow dataset pipeline. This code serves as a crucial preprocessing step for training a lip-reading model, handling data extraction, normalization, and alignment processing.
+                                        </p>
+                                        <img src="images/lip_reading/DataLoading1.png" alt="" class="lip_read">
+                                        <img src="images/lip_reading/DataLoading2.png" alt="" class="lip_read">
+                                        <img src="images/lip_reading/DataLoading3.png" alt="" class="lip_read">
+                                        <img src="images/lip_reading/DataLoading4.png" alt="" class="lip_read"><br><br>
+                                       </div>
+                                       <div>
+                                        <h2 class="major">Create Data Pipeline</h2>
+                                        <p>
+                                            The provided code utilizes TensorFlow's Dataset API to create a pipeline for loading and preprocessing data. It starts by creating a dataset from a list of file paths corresponding to video files in the './data/s1/' directory. 
+                                            The dataset is then shuffled with a buffer size of 500, ensuring that the order of elements is randomized without reshuffling at each iteration. The <code>mappable_function</code> is applied to each element in the dataset, which loads video frames and text alignments. The dataset is further processed by padding the batches to have a fixed shape of ([75, None, None, None], [40]) and grouped into batches of size 2. 
+                                            Finally, the dataset is prefetched to optimize performance, and a train-test split is created with 450 samples used for training and the remaining for testing. This code prepares the data pipeline for subsequent training of a lip-reading model, ensuring efficient and organized data input.
+                                        </p>
+                                        <img src="images/lip_reading/DataPipe1.png" alt="" class="lip_read">
+                                        <img src="images/lip_reading/DataPipe2.png" alt="" class="lip_read"><br><br>
+                                       </div>
+                                       <div>
+                                        <h2 class="major">Design the Deep Neural Network</h2>
+                                        <img src="images/lip_reading/train1.png" alt="" class="lip_read">
+                                        <img src="images/lip_reading/train2.png" alt="" class="summary">
+                                        <img src="images/lip_reading/train3.png" alt="" class="lip_read"><br><br>
+                                       </div>
+                                       <div>
+                                        <h2 class="major">Setup Training Options and Train</h2>
+                                        <img src="images/lip_reading/train4.png" alt="" class="lip_read"><br><br>
+                                       </div>
+                                       <div>
+                                        <h2 class="major">Make a Prediction</h2>
+                                        <img src="images/lip_reading/predict.png" alt="" class="lip_read"><br><br>
+                                       </div>
+									</section>
+                                    <ul class="actions">
+                                        <li><a href="projects.html" class="button">Go Back</a></li>
+                                        <li><a href="index.html" class="button">Home</a></li>
+                                    </ul>
+								</div>
+							</div>
+
+					</section>
+
+				<!-- Footer -->
+				<section id="footer">
+					<div class="inner">
+						<h2 class="major">contact Me</h2>
+						<ul class="contact">
+							<li class="icon solid fa-phone">(+91) 74008-30032</li>
+							<li class="icon solid fa-envelope"><a href="#">singh3112aditya@gmail.com</a></li>
+							<li class="icon brands fa-linkedin-in"><a href="https://www.linkedin.com/in/aditya-singh-2a2066212/" target="_blank">LinkedIn</a></li>
+						</ul>
+					</div>
+				</section>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
